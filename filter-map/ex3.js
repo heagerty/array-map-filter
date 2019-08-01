@@ -50,7 +50,38 @@ Sortie attendue:
 
 */
 
+// function getStudentsPerCurriculum(campuses, curriculumName) {
+//     const campusesConcerned = campuses.filter(function(campus){
+//         let arrayOfCurriculums = campus.curriculums;
+//         for (curriculum in arrayOfCurriculums) {
+//
+//             if (curriculum.name == (curriculumName)) {
+//                 return true;
+//             }
+//
+//         }
+//         return false;
+//     });
+//     return campusesConcerned;
+//     const response = campusesConcerned.map(function(c) {
+//         return c.city;
+//     });
+//     return response;
+// }
+
 function getStudentsPerCurriculum(campuses, curriculumName) {
+    let newlist = [];
+
+    let campusesConcerned = campuses.filter(function(campus) {
+        campus.curriculums.map(function (curriculum) {
+            if (curriculum.name.includes(curriculumName)) {
+                newlist.push({[campus.city]: curriculum.numStudents});
+            }
+        })
+    });
+
+    return newlist;
+
 }
 
 module.exports = getStudentsPerCurriculum;
