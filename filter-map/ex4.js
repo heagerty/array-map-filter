@@ -63,10 +63,31 @@ En prenant les deux exemples d'arguments d'entrée, on obtiendrait ceci en sorti
 
 */
 
+
+
 function getActivitiesMembers(activities, persons) {
 
-    let listOfPlayers = [];
+    let list = activities.map(function(activity){
+
+            let rightPeople = persons.filter(function(person) {
+
+                return (person.activities.includes(activity));
+            });
+            let goodPerson = rightPeople.map(function(rightPerson){
+                return rightPerson.name;
+            })
+
+            return {
+                activity: activity,
+                persons: goodPerson,
+            }
+    });
+    return list;
 }
+
+
+
+
 
 
 
